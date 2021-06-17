@@ -1,0 +1,19 @@
+create a directory 
+cd directory
+create the file CMakeLists.txt
+Inside the directory create the file build
+Build is the file where the cmake scripts are going to run from
+cd Build (go inside the build directory)
+and type the command
+cmake ..
+Now go inside the build directory and look at the files present in the cmake
+inside the build we will have four files which are the output of the generation
+we shall now delete these files to use curses cmake
+which is ccmake
+text user interface. It is not exactly command line interface
+we can now delete these lines and create it using ccmake . It creates an empty terminal but create an empty cache file
+also it didn't execute in the system i  am using
+there is nothing in the  cache yet
+ccmake is good when you want to see the cache but you don't have a gui yet
+doing it using a gui on windows is same as doing it from terminal in ubuntu
+or you just prefer a text mode user base
