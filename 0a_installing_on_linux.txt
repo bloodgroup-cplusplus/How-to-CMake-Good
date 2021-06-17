@@ -1,0 +1,27 @@
+check for cmake version in your shell
+cmake --version
+go to the website cmake.org 
+in the downloads section for ubuntu we have .tar extension and .sh extension
+type the command "apt search cmake \$" to search for the versio differences
+curl https://github.com/Kitware/CMake/releases/download/v3.20.4/cmake-3.20.4-linux-x86_64.sh -o cmake.sh
+we have a local copy of local shell script
+we have blog of enormous looking data
+tarball is embedded on shell
+sh cmake.sh --help 
+to do the install 
+sh cmake.sh --prefix=(pwd)/cmake-test-install
+it prompts for license(y/n)
+it asks if it wants the subdirectories(y/n)
+now if we open up that directory
+dg-open cmake-test-install/
+we have the  binaries files
+we can retarget the shell scripts to install it globally
+now since we don't need that directory
+rm -rf cmake-test-install/
+this pacakage is not managed by global system package manager 
+the packages which are not mananged by the usr/local should go inside usr/local
+sudo sh cmake.sh --prefix=/usr/local/ --exclude-subdir
+if we se
+/usr/local/bin/cmake --version
+cmake --version
+
