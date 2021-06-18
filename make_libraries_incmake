@@ -1,0 +1,3 @@
+say we wan't to move the functionality of printing hello world and move it into a library
+so we build a hpp file and under the namespace hello we create the function declartion
+we also build one hello.cpp file which is going to define the hello world function
