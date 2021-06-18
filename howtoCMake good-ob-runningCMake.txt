@@ -17,3 +17,12 @@ there is nothing in the  cache yet
 ccmake is good when you want to see the cache but you don't have a gui yet
 doing it using a gui on windows is same as doing it from terminal in ubuntu
 or you just prefer a text mode user base
+the cmake uses clang for c and clang ++ for c++
+configuring done and generating done
+It doesn't use c++ instead it uses Cxx due to some parsing error
+we can run cmake --build( to know what kind of build system is underneath ) followed by the directory where it lives
+It ran the build
+It launches makes to run the build first
+This is good when you are configuring the project and may or maynot know what generators you are using 
+cmake --build need not be ran from the same directory you can run it from any directory where you want to build the cmake from
+after that it creates an executable called (the filename any filename) and it executes the required code
