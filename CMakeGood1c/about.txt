@@ -1,0 +1,58 @@
+We wan't to add all the libraries in the subdirectories. 
+We shall call it hello.
+To add a subdirectory we need a CMakeLists.txt Inside of it
+And in the CMakeLists of parent directory on the name of the directory relative to this file
+
+in the parent directory cmake what we do is
+add_subdirectory(say-hello)
+doing this will ensure that we have inlcuded the CMakeLists of the sub directory.
+Now we make a subdirectory called src inside say-hello and inside that subdirectory i.e., inside the 
+src subdireectory we create another say-hello file
+Now we move the hello.cpp and hello.hpp file into the subdirectory say-hello(say-hello/src/say-hello)
+Now the   "add library" of the main cmake is moved inside the CMakeList of say-hello directory
+And since we've moved the add_library from outer cmake to inner cmake so we shall change the path
+initially our path was
+add_library(
+	say-hello
+	hello.cpp
+	hello.hpp
+	)
+now our new path will include the source
+add_library(
+	say-hello
+	src/say-hello/hello.hpp
+	src/say-hello/hello.cpp
+	)
+	
+if we compile the cmake we see that it the outer main tries to open the "hello.hpp"  but it unfortunately
+doesn't find it as the path to the file is changed now
+what we need to do is now is inside the build of outer cmake we can make a folder for the executable file
+say hello-exe and move the main.cpp inside that folder
+Inside the hello-exe folder we make another CMakeLists.txt and move these following lines inside it
+add_executable(CMakeGood1c main.cpp)
+target_link_libraries(CMakeGood1c PRIVATE say-hello)
+The above line( target_link_libraries is moved from the outermost cmake)..
+Now in the outermost cmake we can add a the command
+add_subdirectory(hello-exe)
+In the structure of the the outermost cmake we see that we have
+add_subdirectory(say-hello) first followed by
+add_subdirectory(hello.exe)
+This ensures that the library target is defined before cmake passes over the line.
+we add the library followed by the executable
+Now if we build, it's going to have the same error.("#include hello.hpp") =? no such directory found
+Since we've moved the main but the include path is still different.
+So in-order to solve this what we do is inside the say-hello folder's CMakeList.txt
+we modify the line
+target_include_directories(say_hello PUBLIC "$(MAKE_CURRENT_SOURCE_DIR)/src")
+But wait we still get the error
+So what's the problem..
+inside the target_include_directories we have the keyword PUBLIC this means that anyone that is consuming
+this library needs the complete filepath added to their library as well 
+Since our project is executing the library with public we need to inherit the include directory of that
+library
+So we need to #include<say-hello/hello.hpp>
+and our program compiles
+
+
+
+
