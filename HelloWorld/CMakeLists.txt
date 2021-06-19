@@ -7,4 +7,6 @@ add_library(
 	
 )
 
-add_executable( HelloWorld
+add_executable( HelloWorld main.cpp)
+target_link_libraries( HelloWorld PRIVATE say-hello)
+
